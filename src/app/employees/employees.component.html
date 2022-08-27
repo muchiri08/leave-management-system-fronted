@@ -1,0 +1,32 @@
+<div class="container">
+    <button class="btn-add" routerLink="/employees/add-employee">Add Employee</button>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Gender</th>
+                <th>Email</th>
+                <th *ngIf="isRoleMatch('ADMIN') || isRoleMatch('HR')">Department</th>
+                <th *ngIf="isRoleMatch('ADMIN') || isRoleMatch('HR')">Position</th>
+                <th *ngIf="isRoleMatch('ADMIN') || isRoleMatch('HR')">Actions</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let employee of employees">
+            <tr>
+                <td>{{employee.getFisrtName()}}</td>
+                <td>{{employee.getLastName()}}</td>
+                <td>{{employee.getGender()}}</td>
+                <td>{{employee.getEmail()}}</td>
+                <td *ngIf="isRoleMatch('ADMIN') || isRoleMatch('HR')">{{employee.getDepartment()}}</td>
+                <td *ngIf="isRoleMatch('ADMIN') || isRoleMatch('HR')">{{employee.getPosition()}}</td>
+                <td *ngIf="isRoleMatch('ADMIN') || isRoleMatch('HR')" class="btns">
+                    <button (click)="saveEmployeeIdToLocalStorage(employee.getId())" class="btn-edit"><fa-icon [icon]="editIcon"></fa-icon></button>
+                    <button class="btn-view"><fa-icon [icon]="viewIcon"></fa-icon></button>
+                    <button *ngIf="isRoleMatch('ADMIN')" (click)="deleteEmployee(employee.getId())" class="btn-delete"><fa-icon [icon]="deleteIcon"></fa-icon></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

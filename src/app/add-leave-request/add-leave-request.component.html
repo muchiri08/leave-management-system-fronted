@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="title">
+      <h1>Create Leave Request</h1>
+    </div>
+  
+    <form class="form" #leaveRequestForm = "ngForm">
+        <div class="form-group">
+            <label for="leaveType">Leave Type</label>
+            <select ngModel name="leaveType" class="form-control">
+              <option *ngFor="let leaveType of leaveTypes" value="{{leaveType.leaveName}}">{{leaveType.leaveName}}</option>
+            </select>
+          </div>
+      <div class="form-group">
+        <label for="startDate">Start Date</label>
+        <input ngModel name="startDate"  type="date" class="form-control" required />
+      </div>
+      <div class="form-group">
+        <label for="endDate">End date</label>
+        <input ngModel name="endDate"  type="date" class="form-control" required />
+      </div>
+        <div class="form-group">
+            <label for="reason">Reason</label>
+            <textarea ngModel name="reason" class="form-control" rows="3" required></textarea>
+        </div>
+
+      <input (click)="createLeaveRequest(leaveRequestForm)"  class="btn-submit" type="submit" value="Submit" />
+    </form>
+  </div>
+  

@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="title">
+      <h1>Edit Leave Type</h1>
+    </div>
+  
+    <form class="form">
+      <div class="form-group">
+        <label for="firstName">Leave Type Name</label>
+        <input [(ngModel)]="leaveType.leaveName" name="leaveTypeName" type="text" class="form-control" required />
+      </div>
+      <div class="form-group">
+        <label for="firstName">Number of Days</label>
+        <input [(ngModel)]="leaveType.numOfDays" name="noOfDays" type="text" class="form-control" required />
+      </div>
+
+      <input (click)="updateLeaveType()" class="btn-submit" type="submit" value="Submit" />
+    </form>
+  </div>
+  

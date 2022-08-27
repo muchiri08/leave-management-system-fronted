@@ -1,0 +1,38 @@
+.container{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.form{
+    margin-top: 10px;
+}
+
+.form-group{
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-control{
+    margin-top: 5px;
+    width: 500px;
+    padding: 8px;
+}
+
+.btn-submit{
+    margin-top: 10px;
+    width: 500px;
+    padding: 8px;
+    background-color: #00bcd4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.btn-submit:hover{
+    background-color: #00acc1;
+}

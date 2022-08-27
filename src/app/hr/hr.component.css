@@ -1,0 +1,32 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2.5rem;
+}
+
+.card{
+    width: fit-content;
+    background-color: #f2f2f2;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-container{
+    margin-left: 5%;    
+}
+
+.card-container :hover{
+    cursor: pointer;
+    background-color: #e2e0e0;
+}
+
+.card-img {
+    font-size: 40px;
+}

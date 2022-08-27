@@ -1,0 +1,21 @@
+<div class="container">
+    <button class="btn-add" routerLink="/departments/add-department">Add Department</button>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Department Name</th>
+                <th *ngIf="roleMatch('ADMIN')">Actions</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let department of departments">
+            <tr>
+                <td>{{department.departmentName}}</td>
+                <td *ngIf="roleMatch('ADMIN')" class="btns">
+                    <button (click)="navigateToEditDepartment(department.departmentId)" class="btn-edit"><fa-icon [icon]="editIcon"></fa-icon></button>
+                    <button (click)="deleteDepartment(department.departmentId)" class="btn-delete"><fa-icon [icon]="deleteIcon"></fa-icon></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

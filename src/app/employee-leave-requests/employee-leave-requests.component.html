@@ -1,0 +1,29 @@
+<div class="container">
+
+    <h1>My Leave Requests</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Leave Type</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Reason</th>
+                <th>Status</th>
+                <th>Date of creation</th>
+                <th>Approved By</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let leave of leaves">
+            <tr>
+                <td>{{leave.leaveType}}</td>
+                <td>{{leave.startDate}}</td>
+                <td>{{leave.endDate}}</td>
+                <td>{{leave.reason}}</td>
+                <td>{{leave.status}}</td>
+                <td>{{leave.dateOfCreation}}</td>
+                <td>{{leave.approvedBy}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

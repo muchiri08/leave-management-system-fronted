@@ -1,0 +1,24 @@
+<div class="container">
+    <button *ngIf="isRoleMatch('ADMIN' || 'HR')" class="btn-add" routerLink="/leaves-type/add-leave-type">Add Leave Type</button>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Leave Type Name</th>
+                <td *ngIf="isRoleMatch('ADMIN' || 'HR')">Number of Days</td>
+                <th *ngIf="isRoleMatch('ADMIN' || 'HR')">Actions</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let leaveType of leavesType">
+            <tr>
+                <td>{{leaveType.leaveName}}</td>
+                <td *ngIf="isRoleMatch('ADMIN' || 'HR')">{{leaveType.numOfDays}}</td>
+                <td *ngIf="isRoleMatch('ADMIN' || 'HR')" class="btns">
+                    <button (click)="navigateToUpdateLeaveType(leaveType.leaveId)" class="btn-edit"><fa-icon [icon]="editIcon"></fa-icon></button>
+                    <button *ngIf="isRoleMatch('ADMIN')" (click)="deleteLeaveType(leaveType.leaveId)" class="btn-delete"><fa-icon [icon]="deleteIcon"></fa-icon></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+

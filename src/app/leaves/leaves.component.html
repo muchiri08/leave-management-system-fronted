@@ -1,0 +1,37 @@
+<div class="container">
+    <button *ngIf="isRole('ADMIN')" class="btn-add" routerLink="/leaves/create-leave-request">Request Leave</button>
+
+    <h1>All Leaves</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Leave Type</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Reason</th>
+                <th>Status</th>
+                <th>Date of creation</th>
+                <th>Approved By</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let leave of leaves">
+            <tr>
+                <td>{{leave.firstName}} {{leave.lastName}}</td>
+                <td>{{leave.leaveType}}</td>
+                <td>{{leave.startDate}}</td>
+                <td>{{leave.endDate}}</td>
+                <td>{{leave.reason}}</td>
+                <td>{{leave.status}}</td>
+                <td>{{leave.dateOfCreation}}</td>
+                <td>{{leave.approvedBy}}</td>
+                <td class="btns">
+                    <button (click)="getLeaveRequestBtId(leave.leaveId)" routerLink="/leaves/approve-leave-request" class="btn-edit"><fa-icon [icon]="editIcon"></fa-icon></button>
+                    <button *ngIf="isRole('ADMIN')" class="btn-delete"><fa-icon [icon]="deleteIcon"></fa-icon></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,17 @@
+<div class="header">
+    <div class="header-logo">
+        <h3>L-M-S</h3>
+    </div>
+    <div class="header-nav">
+        <ul>
+            <li (click)="returnHome('ADMIN')"><a *ngIf="employeeService.roleMatch('ADMIN')">Admin Dashboard</a></li>
+            <li (click)="returnHome('HIGHER_LEVEL')"><a *ngIf="employeeService.roleMatch('HIGHER_LEVEL')">HigherLevel Dashboard</a></li>
+            <li (click)="returnHome('HR')"><a *ngIf="employeeService.roleMatch('HR')">HR Dashboard</a></li>
+            <li (click)="returnHome('HOD')"><a *ngIf="employeeService.roleMatch('HOD')">HOD Dashboard</a></li>
+            <li (click)="returnHome('CASUAL_EMPLOYEE')"><a *ngIf="employeeService.roleMatch('CASUAL_EMPLOYEE')">Employee Dashboard</a></li>
+        </ul>
+    </div>
+    <div class="btn">
+        <button (click)="logout()" class="btn-logout">Logout</button>
+    </div>
+</div>

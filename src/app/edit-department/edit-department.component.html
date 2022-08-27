@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="title">
+      <h1>Edit Department</h1>
+    </div>
+  
+    <form class="form">
+      <div class="form-group">
+        <label for="firstName">Department Name</label>
+        <input [(ngModel)]="department.departmentName" name="departmentName" type="text" class="form-control" id="firstName" required />
+      </div>
+
+      <input (click)="updateDepartment(department)" class="btn-submit" type="submit" value="Submit" />
+    </form>
+  </div>
+  

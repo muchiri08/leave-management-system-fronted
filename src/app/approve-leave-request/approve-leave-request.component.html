@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="title">
+      <h1>Approve Leave Request</h1>
+    </div>
+  
+    <form class="form">
+      <div class="form-group">
+        <label for="approval">Approve/Reject</label>
+        <select [(ngModel)]="leaveRequest.status" name="status" class="form-control">
+          <option value="Approve">Approve</option>
+          <option value="Reject">Reject</option>
+        </select>
+      </div>
+
+      <input (click)="approveLeaveRequest()" class="btn-submit" type="submit" value="Submit" />
+    </form>
+  </div>
+  
+

@@ -1,0 +1,18 @@
+<div class="login">
+    <div class="login-card">
+        <h2>Leave Management System</h2>
+        <hr>
+        <h3>Login In</h3>
+        <form #loginForm="ngForm">
+            <div>
+                <input ngModel class="input" type="text" name="email" id="email" placeholder="Username (Email)" required>
+            </div>
+            <div class="mt-5">
+                <input ngModel class="input" type="password" name="password" id="password" placeholder="Password" required>
+            </div>
+            <div class="mt-5">
+                <input (click)="login(loginForm)" class="btn-submit" type="submit" name="login" value="Login">
+            </div>
+        </form>
+    </div>
+</div>
