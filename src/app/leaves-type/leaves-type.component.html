@@ -5,14 +5,14 @@
         <thead>
             <tr>
                 <th>Leave Type Name</th>
-                <td *ngIf="isRoleMatch('ADMIN' || 'HR')">Number of Days</td>
+                <th>Number of Days</th>
                 <th *ngIf="isRoleMatch('ADMIN' || 'HR')">Actions</th>
             </tr>
         </thead>
         <tbody *ngFor="let leaveType of leavesType">
             <tr>
                 <td>{{leaveType.leaveName}}</td>
-                <td *ngIf="isRoleMatch('ADMIN' || 'HR')">{{leaveType.numOfDays}}</td>
+                <td>{{leaveType.numOfDays}}</td>
                 <td *ngIf="isRoleMatch('ADMIN' || 'HR')" class="btns">
                     <button (click)="navigateToUpdateLeaveType(leaveType.leaveId)" class="btn-edit"><fa-icon [icon]="editIcon"></fa-icon></button>
                     <button *ngIf="isRoleMatch('ADMIN')" (click)="deleteLeaveType(leaveType.leaveId)" class="btn-delete"><fa-icon [icon]="deleteIcon"></fa-icon></button>
