@@ -31,20 +31,28 @@ export class LeavesComponent implements OnInit {
       this.employeeService.getLeaveByDepartment(this.id).subscribe(
         response => {
           this.leaves = response;
-          console.log(this.leaves);
         }
       );
     }
     this.employeeService.getLeaveRequests().subscribe(
       response => {
         this.leaves = response;
-        console.log(this.leaves);
       }
     );
   }
 
-  getLeaveRequestBtId(id: number) {
+  getLeaveRequestById(id: number) {
     this.employeeAuthService.setIdToUpdate(id);
+  }
+
+  deleteLeaveRequest(id: number) {
+    if (confirm("Are you sure you want to delete this leave request?")) {
+      this.employeeService.deleteLeaveRequest(id).subscribe(
+        response => {
+          this.leaves = this.leaves.filter(leave => leave.leaveId != id);
+        }
+      );
+    }
   }
 
   isRole(role: string) {

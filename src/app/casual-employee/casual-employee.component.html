@@ -28,7 +28,10 @@
                 <h2>Request a Leave</h2>
             </div>
         </div>
-    </div>
+    </div>   
+</div>
+
+<div class="container">
     <div class="card-container" routerLink="/my-leave-requests">
         <div class="card">
             <div class="card-img">
@@ -38,7 +41,17 @@
                 <h2>My Leave Requests</h2>
             </div>
         </div>
-    </div>    
+    </div> 
+    <div class="card-container-bal">
+        <div class="card-bal">
+            <div class="card-img">
+                <fa-icon [icon]="balanceIcon"></fa-icon>
+            </div>
+            <div class="card-title">
+                <h2>Leave Balance = {{employeeLeaveBalance}}</h2>
+            </div>
+        </div>
+    </div>
 </div>
 
 

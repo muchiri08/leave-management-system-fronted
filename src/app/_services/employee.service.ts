@@ -151,6 +151,10 @@ export class EmployeeService {
     return this.httpClient.get<[]>(this.API_PATH + "leave/department-leaves/" + id);
   }
 
+  public deleteLeaveRequest(id: number) {
+    return this.httpClient.delete(this.API_PATH + "leave/delete-leave/" + id);
+  }
+
   public getHodLeaves() {
     return this.httpClient.get<[]>(this.API_PATH + "leave/hod-leaves");
   }
@@ -169,6 +173,10 @@ export class EmployeeService {
 
   public deleteHoliday(id: number) {
     return this.httpClient.delete(this.API_PATH + "delete-holiday/" + id);
+  }
+
+  public getLeaveBalance(id: number) {
+    return this.httpClient.get<number>(this.API_PATH + "leave-balance/" + id);
   }
 
 }

@@ -28,8 +28,8 @@
                 <td>{{leave.dateOfCreation}}</td>
                 <td>{{leave.approvedBy}}</td>
                 <td class="btns">
-                    <button (click)="getLeaveRequestBtId(leave.leaveId)" routerLink="/leaves/approve-leave-request" class="btn-edit"><fa-icon [icon]="editIcon"></fa-icon></button>
-                    <button *ngIf="isRole('ADMIN')" class="btn-delete"><fa-icon [icon]="deleteIcon"></fa-icon></button>
+                    <button (click)="getLeaveRequestById(leave.leaveId)" routerLink="/leaves/approve-leave-request" class="btn-edit"><fa-icon [icon]="editIcon"></fa-icon></button>
+                    <button (click)="deleteLeaveRequest(leave.leaveId)" *ngIf="isRole('ADMIN')" class="btn-delete"><fa-icon [icon]="deleteIcon"></fa-icon></button>
                 </td>
             </tr>
         </tbody>

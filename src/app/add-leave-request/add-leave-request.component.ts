@@ -25,7 +25,6 @@ export class AddLeaveRequestComponent implements OnInit {
     this.employeeService.getLeavesType().subscribe(
       response => {
         this.leaveTypes = response;
-        console.log(this.leaveTypes);
       }
     );
   }
@@ -34,7 +33,6 @@ export class AddLeaveRequestComponent implements OnInit {
     if(form.valid){
       this.employeeService.createLeaveRequest(this.id, form.value).subscribe(
         response => {
-          console.log(response);
           form.reset();
         }
       );
