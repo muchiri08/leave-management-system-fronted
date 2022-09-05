@@ -3,6 +3,7 @@ import { faUsers } from '@fortawesome/free-solid-svg-icons';
 import { faHouse } from '@fortawesome/free-solid-svg-icons';
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { faList } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarDays } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-admin',
@@ -15,6 +16,7 @@ export class AdminComponent implements OnInit {
   departmentIcon = faHouse;
   leaveTypeIcon = faArrowRightFromBracket;
   leaveRequestsIcon = faList;
+  holidaysIcon = faCalendarDays;
 
 
   constructor() { }

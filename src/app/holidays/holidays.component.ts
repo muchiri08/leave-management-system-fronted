@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { Holiday } from '../_model/holiday';
+import { EmployeeService } from '../_services/employee.service';
 
 @Component({
   selector: 'app-holidays',
@@ -7,9 +11,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HolidaysComponent implements OnInit {
 
-  constructor() { }
+  deleteIcon = faTrashCan;
+  holidays: Array<Holiday> = new Array<Holiday>();
+
+  constructor(private employeeService: EmployeeService, private router: Router) {
+    this.getHolidays();
+   }
 
   ngOnInit(): void {
+  }
+
+  public getHolidays() {
+    this.employeeService.getHolidays().subscribe(
+      (data: any) => {
+        this.holidays = data;
+      }
+    );
+  }
+
+  public deleteHoliday(id: number){
+      if(this.roleMatch('ADMIN')){
+        if (confirm('Are you sure you want to delete this holiday?')) {
+          this.employeeService.deleteHoliday(id).subscribe(
+            (response) => {
+              this.holidays = this.holidays.filter(holiday => holiday.holidayId !== id);
+            }
+          )
+        }
+      } else {
+        alert('You are not authorized to delete a holiday!');
+      }
+  }
+
+  public roleMatch(role: string){
+    return this.employeeService.roleMatch(role);
   }
 
 }

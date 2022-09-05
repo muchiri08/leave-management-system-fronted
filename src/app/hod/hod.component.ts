@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faArrowRightFromBracket, faHouse, faList, faUsers } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRightFromBracket, faCalendarDays, faHouse, faList, faUsers } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-hod',
@@ -12,6 +12,7 @@ export class HodComponent implements OnInit {
   departmentIcon = faHouse;
   leaveTypeIcon = faArrowRightFromBracket;
   leaveRequestsIcon = faList;
+  holidaysIcon = faCalendarDays;
 
   constructor() { }
 

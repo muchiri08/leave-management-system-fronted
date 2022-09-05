@@ -159,4 +159,16 @@ export class EmployeeService {
     return this.httpClient.get<[]>(this.API_PATH + "leave/my-leaves/" + id);
   }
 
+  public getHolidays() {
+    return this.httpClient.get<[]>(this.API_PATH + "holidays");
+  }
+
+  public createHoliday(holiday: any) {
+    return this.httpClient.post(this.API_PATH + "create-holiday", holiday);
+  }
+
+  public deleteHoliday(id: number) {
+    return this.httpClient.delete(this.API_PATH + "delete-holiday/" + id);
+  }
+
 }

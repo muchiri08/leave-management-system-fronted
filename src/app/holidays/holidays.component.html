@@ -1,1 +1,22 @@
-<p>holidays works!</p>
+<div class="container">
+    <button *ngIf="roleMatch('ADMIN') || roleMatch('HR')" class="btn-add" routerLink="/holidays/add-holiday">Add Holiday</button>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Holiday Date</th>
+                <th>Holiday Description</th>
+                <th *ngIf="roleMatch('ADMIN') || roleMatch('HR')">Actions</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let holiday of holidays">
+            <tr>
+                <td>{{holiday.holidayDate}}</td>
+                <td>{{holiday.description}}</td>
+                <td *ngIf="roleMatch('ADMIN') || roleMatch('HR')" class="btns">
+                    <button (click)="deleteHoliday(holiday.holidayId)" class="btn-delete"><fa-icon [icon]="deleteIcon"></fa-icon></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

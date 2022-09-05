@@ -1,0 +1,65 @@
+.container{
+    margin-top: 2.5rem;
+}
+
+
+.btn-add{
+    padding: 16px 22px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 3%;
+}
+
+.table{
+    margin-top: 30px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table td, .table th {
+    border: 1px solid;
+}
+
+.table tr:nth-child(even){background-color: #f2f2f2;}
+
+.table tr:hover {background-color: rgb(248, 247, 247);}
+
+.table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: rgb(202, 202, 202);
+  color: black;
+}
+
+.table tr{
+    text-align: center;
+}
+
+.table td{
+    padding: 6px;
+}
+
+.btns{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+
+.btn-delete,
+.btn-edit{
+    padding: 5px 8px;
+    font-size: 12px;
+    cursor: pointer;
+    margin: 7px 0;
+}
+
+.btn-delete fa-icon{
+    color: rgb(190, 13, 13);
+}
+
+.btn-edit fa-icon{
+    color: green;
+}
