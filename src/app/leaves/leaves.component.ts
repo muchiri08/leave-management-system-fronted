@@ -59,4 +59,24 @@ export class LeavesComponent implements OnInit {
     return this.employeeService.roleMatch(role);
   }
 
+  generateReport() {
+    this.employeeService.generateLeaveReportPdf("pdf").subscribe(
+      response => {
+        let downLoadLink = document.createElement('a');
+        downLoadLink.href = window.URL.createObjectURL(new Blob([response], { type: 'application/pdf' }));
+        
+        if(response){
+          downLoadLink.setAttribute('download', 'leaveReport.pdf');
+          document.body.appendChild(downLoadLink);
+          downLoadLink.click();
+        }
+
+        // const theFile = new Blob([response], { type: 'application/pdf' });
+        // const fileURL = URL.createObjectURL(theFile);
+        // window.open(fileURL);
+        //console.log("PDF generated");
+      }
+    );
+  }
+
 }

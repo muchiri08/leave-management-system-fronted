@@ -2,7 +2,7 @@
     <button *ngIf="isRole('ADMIN')" class="btn-add" routerLink="/leaves/create-leave-request">Request Leave</button>
 
     <h1>All Leaves</h1>
-
+    <button class="btn btn-primary" (click)="generateReport()">Export to Pdf</button>
     <table class="table">
         <thead>
             <tr>
