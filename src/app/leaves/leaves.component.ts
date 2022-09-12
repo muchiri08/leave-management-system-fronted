@@ -19,6 +19,11 @@ export class LeavesComponent implements OnInit {
 
   id: number = this.employeeAuthService.getEmployeeId();
 
+  dates: any = {
+    startDate: '',
+    endDate: ''
+  }
+
   constructor(private employeeService: EmployeeService, private employeeAuthService: EmployeeAuthService) {
     this.getLeaves();
   }
@@ -27,7 +32,7 @@ export class LeavesComponent implements OnInit {
   }
 
   getLeaves() {
-    if(this.isRole('HOD')){
+    if (this.isRole('HOD')) {
       this.employeeService.getLeaveByDepartment(this.id).subscribe(
         response => {
           this.leaves = response;
@@ -60,23 +65,28 @@ export class LeavesComponent implements OnInit {
   }
 
   generateReport() {
-    this.employeeService.generateLeaveReportPdf("pdf").subscribe(
-      response => {
-        let downLoadLink = document.createElement('a');
-        downLoadLink.href = window.URL.createObjectURL(new Blob([response], { type: 'application/pdf' }));
-        
-        if(response){
-          downLoadLink.setAttribute('download', 'leaveReport.pdf');
-          document.body.appendChild(downLoadLink);
-          downLoadLink.click();
-        }
+    if (this.dates.startDate != '' && this.dates.endDate != '') {
+      this.employeeService.generateLeaveReportPdf(this.dates.startDate, this.dates.endDate, "pdf").subscribe(
+        response => {
 
-        // const theFile = new Blob([response], { type: 'application/pdf' });
-        // const fileURL = URL.createObjectURL(theFile);
-        // window.open(fileURL);
-        //console.log("PDF generated");
-      }
-    );
+          let downLoadLink = document.createElement('a');
+          downLoadLink.href = window.URL.createObjectURL(new Blob([response], { type: 'application/pdf' }));
+
+          if (response) {
+            downLoadLink.setAttribute('download', 'leaves-report.pdf');
+            document.body.appendChild(downLoadLink);
+            downLoadLink.click();
+          }
+
+          // const theFile = new Blob([response], { type: 'application/pdf' });
+          // const fileURL = URL.createObjectURL(theFile);
+          // window.open(fileURL);
+          //console.log("PDF generated");
+        }
+      );
+    } else {
+      alert("Please select start and end dates");
+    }
   }
 
 }

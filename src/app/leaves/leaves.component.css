@@ -1,5 +1,5 @@
 .container{
-    margin-top: 2.5rem;
+    margin-top: 2rem;
 }
 
 h1{
@@ -17,7 +17,7 @@ h1{
 }
 
 .table{
-    margin-top: 30px;
+    margin-top: 20px;
     width: 100%;
     border-collapse: collapse;
 }
@@ -72,4 +72,11 @@ h1{
 
 .btn-edit fa-icon{
     color: green;
+}
+
+.range{
+    display: flex;
+    flex-direction: row;;
+    align-items: center;
+    gap: 5px;
 }

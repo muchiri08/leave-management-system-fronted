@@ -29,6 +29,8 @@ export class AuthInterceptor implements HttpInterceptor {
                     alert('There is already an employee with this email');
                 } else if(err.status === 409){
                     alert('There is already an HOD in this Department');
+                } else if(err.status === 404){
+                    alert('No data found');
                 }
                 return throwError("Something is wrong");
             })

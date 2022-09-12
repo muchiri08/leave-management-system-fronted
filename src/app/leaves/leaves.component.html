@@ -2,7 +2,14 @@
     <button *ngIf="isRole('ADMIN')" class="btn-add" routerLink="/leaves/create-leave-request">Request Leave</button>
 
     <h1>All Leaves</h1>
-    <button class="btn btn-primary" (click)="generateReport()">Export to Pdf</button>
+    <h5>Select the date range you want on the report</h5>
+    <div class="range">
+        <label for="starDate">Start Date :</label>
+        <input type="date" [(ngModel)]="dates.startDate">
+        <label for="endDate">End Date :</label>
+        <input type="date" [(ngModel)]="dates.endDate">
+        <button class="btn btn-primary" (click)="generateReport()">Export to Pdf</button>
+    </div>
     <table class="table">
         <thead>
             <tr>

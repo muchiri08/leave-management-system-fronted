@@ -179,13 +179,13 @@ export class EmployeeService {
     return this.httpClient.get<number>(this.API_PATH + "leave-balance/" + id);
   }
 
-  public generateLeaveReportPdf(format: string) {
+  public generateLeaveReportPdf(startDate: string, endaDate: string, format: string) {
     const headers = {
       responseType: 'blob' as 'json',
       // ContentType: 'application/pdf',
       // contentDisposition: 'form-data; name=filename; filename=leave-report.pdf'
     }
-    return this.httpClient.get<any>(this.API_PATH + "report/" + format, headers);
+    return this.httpClient.get<any>(this.API_PATH + `report/${startDate}/${endaDate}/${format}`, headers);
   }
 
 }
