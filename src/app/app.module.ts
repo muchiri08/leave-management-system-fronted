@@ -35,6 +35,7 @@ import { HodLeavesComponent } from './hod-leaves/hod-leaves.component';
 import { EmployeeLeaveRequestsComponent } from './employee-leave-requests/employee-leave-requests.component';
 import { HolidaysComponent } from './holidays/holidays.component';
 import { AddHolidayComponent } from './add-holiday/add-holiday.component';
+import { ViewEmployeeComponent } from './view-employee/view-employee.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { AddHolidayComponent } from './add-holiday/add-holiday.component';
     HodLeavesComponent,
     EmployeeLeaveRequestsComponent,
     HolidaysComponent,
-    AddHolidayComponent
+    AddHolidayComponent,
+    ViewEmployeeComponent
   ],
   imports: [
     BrowserModule,

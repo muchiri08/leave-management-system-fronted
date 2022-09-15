@@ -23,6 +23,7 @@ import { HodLeavesComponent } from './hod-leaves/hod-leaves.component';
 import { EmployeeLeaveRequestsComponent } from './employee-leave-requests/employee-leave-requests.component';
 import { HolidaysComponent } from './holidays/holidays.component';
 import { AddHolidayComponent } from './add-holiday/add-holiday.component';
+import { ViewEmployeeComponent } from './view-employee/view-employee.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -47,6 +48,7 @@ const routes: Routes = [
   { path: 'my-leave-requests', component: EmployeeLeaveRequestsComponent, canActivate: [AuthGuard], data: { role: ['HR', 'HOD', 'CASUAL_EMPLOYEE'] } },
   { path: 'holidays', component: HolidaysComponent, canActivate: [AuthGuard], data: { role: ['ADMIN', 'HR', 'HIGHER_LEVEL', 'HOD', 'CASUAL_EMPLOYEE'] } },
   { path: 'holidays/add-holiday', component: AddHolidayComponent, canActivate: [AuthGuard], data: { role: ['ADMIN', 'HR'] } },
+  { path: 'employees/employee/:id', component: ViewEmployeeComponent, canActivate: [AuthGuard], data: { role: ['ADMIN', 'HR', 'HIGHER_LEVEL', 'HOD'] } },
   { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
 

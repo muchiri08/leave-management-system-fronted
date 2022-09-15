@@ -3,6 +3,7 @@ export class Leave {
         public leaveId: number,
         public firstName: string,
         public lastName: string,
+        public departmentName: string,
         public leaveType: string,
         public startDate: string,
         public endDate: string,

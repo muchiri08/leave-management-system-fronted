@@ -1,0 +1,28 @@
+<div class="container">
+  <h2>Individual Employee Details</h2>
+
+  <div class="row">
+    <label for="fullName">Full Names: </label>
+    <input type="text" id="fullName" name="fullName" value="{{employee?.getFisrtName()}} {{employee?.getLastName()}}" disabled>
+  </div>
+  <div class="row">
+    <label for="department">Department: </label>
+    <input type="text" id="department" name="fullName" value="{{employee?.getDepartment()}}" disabled>
+  </div>
+  <div class="row">
+    <label for="gender">Gender: </label>
+    <input type="text" id="gender" name="fullName" value="{{employee?.getGender()}}" disabled>
+  </div>
+  <div class="row">
+    <label for="position">Position: </label>
+    <input type="text" id="position" name="fullName" value="{{employee?.getPosition()}}" disabled>
+  </div>
+  <div class="row">
+    <label for="leave-balance">Leave Balance: </label>
+    <input type="text" id="leave-balance" name="fullName" value="{{employeeLeaveBalance}}" disabled>
+  </div>
+  <div class="row">
+    <button (click)="applyLeaveOnBehalfOfEmployee()">Apply Leave On Behalf</button>
+  </div>
+
+</div>

@@ -59,6 +59,12 @@ export class EmployeesComponent implements OnInit {
     }
   }
 
+  viewEmployee(id: number) {
+    this.employeeAuthService.setIdToUpdate(id);
+    this.router.navigate([`/employees/employee/:${id}`]);
+    console.log(id);
+  }
+
   isRoleMatch(allowedRole: string) {
     return this.employeeService.roleMatch(allowedRole);
   }

@@ -2,18 +2,22 @@
     <button *ngIf="isRole('ADMIN')" class="btn-add" routerLink="/leaves/create-leave-request">Request Leave</button>
 
     <h1>All Leaves</h1>
-    <h5>Select the date range you want on the report</h5>
-    <div class="range">
-        <label for="starDate">Start Date :</label>
-        <input type="date" [(ngModel)]="dates.startDate">
-        <label for="endDate">End Date :</label>
-        <input type="date" [(ngModel)]="dates.endDate">
-        <button class="btn btn-primary" (click)="generateReport()">Export to Pdf</button>
+    <div *ngIf="isRole('ADMIN') || isRole('HR')">
+        <h5>Select the date range you want on the report</h5>
+        <div class="range">
+            <label for="starDate">Start Date :</label>
+            <input type="date" [(ngModel)]="dates.startDate">
+            <label for="endDate">End Date :</label>
+            <input type="date" [(ngModel)]="dates.endDate">
+            <button class="btn btn-primary" (click)="generateReport()">Export to Pdf</button>
+        </div>
     </div>
     <table class="table">
         <thead>
             <tr>
+                <th>Leave Id</th>
                 <th>Name</th>
+                <th *ngIf="isRole('ADMIN') || isRole('HR')">Department</th>
                 <th>Leave Type</th>
                 <th>Start Date</th>
                 <th>End Date</th>
@@ -26,7 +30,9 @@
         </thead>
         <tbody *ngFor="let leave of leaves">
             <tr>
+                <td>{{leave.leaveId}}</td>
                 <td>{{leave.firstName}} {{leave.lastName}}</td>
+                <td *ngIf="isRole('ADMIN') || isRole('HR')">{{leave.departmentName}}</td>
                 <td>{{leave.leaveType}}</td>
                 <td>{{leave.startDate}}</td>
                 <td>{{leave.endDate}}</td>

@@ -13,6 +13,7 @@ export class AddLeaveRequestComponent implements OnInit {
 
   leaveTypes: Array<LeaveType> = new Array<LeaveType>();
   id: number = this.employeeAuthService.getEmployeeId();
+  empId: number = this.employeeAuthService.getIdToUpdate();
 
   constructor(private employeeService: EmployeeService, private employeeAuthService: EmployeeAuthService) {
     this.getLeaveTypes();
@@ -31,14 +32,26 @@ export class AddLeaveRequestComponent implements OnInit {
 
   createLeaveRequest(form: NgForm){
     if(form.valid){
-      this.employeeService.createLeaveRequest(this.id, form.value).subscribe(
-        response => {
-          form.reset();
-        }
-      );
+      if(this.isRoleMatch('ADMIN') || this.isRoleMatch('HR')){
+        this.employeeService.createLeaveRequest(this.empId, form.value).subscribe(
+          response => {
+            form.reset();
+          }
+        );
+      } else {
+        this.employeeService.createLeaveRequest(this.id, form.value).subscribe(
+          response => {
+            form.reset();
+          }
+        );
+      }
     } else {
       alert('Please fill in all the fields');
     }
+  }
+  
+  isRoleMatch(role: string){
+    return this.employeeService.roleMatch(role);
   }
 
 }
