@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { LeaveType } from '../_model/leave-type';
 import { EmployeeAuthService } from '../_services/employee-auth.service';
 import { EmployeeService } from '../_services/employee.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-leave-request',
@@ -15,7 +16,7 @@ export class AddLeaveRequestComponent implements OnInit {
   id: number = this.employeeAuthService.getEmployeeId();
   empId: number = this.employeeAuthService.getIdToUpdate();
 
-  constructor(private employeeService: EmployeeService, private employeeAuthService: EmployeeAuthService) {
+  constructor(private employeeService: EmployeeService, private employeeAuthService: EmployeeAuthService, private toastr: ToastrService) {
     this.getLeaveTypes();
    }
 
@@ -36,17 +37,19 @@ export class AddLeaveRequestComponent implements OnInit {
         this.employeeService.createLeaveRequest(this.empId, form.value).subscribe(
           response => {
             form.reset();
+            this.toastr.success('Leave request created successfully');
           }
         );
       } else {
         this.employeeService.createLeaveRequest(this.id, form.value).subscribe(
           response => {
             form.reset();
+            this.toastr.success('Leave request created successfully');
           }
         );
       }
     } else {
-      alert('Please fill in all the fields');
+      this.toastr.error('Please fill in all the fields');
     }
   }
   

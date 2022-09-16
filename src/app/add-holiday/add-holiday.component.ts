@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Holiday } from '../_model/holiday';
 import { EmployeeService } from '../_services/employee.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-holiday',
@@ -11,7 +12,7 @@ export class AddHolidayComponent implements OnInit {
 
   holiday: Holiday = new Holiday(parseInt(''), '', '');
 
-  constructor(private employeeService: EmployeeService) { }
+  constructor(private employeeService: EmployeeService, private toaster: ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -21,9 +22,10 @@ export class AddHolidayComponent implements OnInit {
       this.employeeService.createHoliday(this.holiday).subscribe(data => {
         this.holiday.holidayDate = "";
         this.holiday.description = "";
+        this.toaster.success('Holiday added successfully');
       });
     } else {
-      alert('Please fill all the fields');
+      this.toaster.error('Please fill all the fields');
     }
   }
 

@@ -4,6 +4,7 @@ import { EmployeeAuthService } from '../_services/employee-auth.service';
 import { Emp2 } from '../_model/emp2';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -27,7 +28,7 @@ export class EditEmployeeComponent implements OnInit {
   
   id = this.employeeAuthService.getIdToUpdate();
 
-  constructor(private employeeService: EmployeeService, private employeeAuthService: EmployeeAuthService, private router: Router) { 
+  constructor(private employeeService: EmployeeService, private employeeAuthService: EmployeeAuthService, private router: Router, private toastr: ToastrService) { 
     this.getEmployeeById(this.id);
   }
 
@@ -40,7 +41,6 @@ export class EditEmployeeComponent implements OnInit {
     return this.employeeService.getEmployeeById(id).subscribe(
       (data: any) => {
         this.employee = data;
-        console.log(this.employee);
       }
     );
   }
@@ -50,12 +50,12 @@ export class EditEmployeeComponent implements OnInit {
       if (employee.valid){
         this.employeeService.updateEmployee(id, employee.value).subscribe(
           response => {
-            console.log(response);
             this.router.navigate(['/employees']);
+            this.toastr.success('Employee updated successfully');
           }
         );
       } else {
-        alert('All field are required');
+        this.toastr.error('Please fill all the fields');
       }
   }
 

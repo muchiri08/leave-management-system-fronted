@@ -5,6 +5,7 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { Department } from '../_model/department';
 import { EmployeeAuthService } from '../_services/employee-auth.service';
 import { EmployeeService } from '../_services/employee.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-departments',
@@ -18,7 +19,7 @@ export class DepartmentsComponent implements OnInit {
 
   departments: Array<Department> = new Array<Department>();
 
-  constructor(private employeeService: EmployeeService, private router: Router, private employeeAuthService: EmployeeAuthService) { 
+  constructor(private employeeService: EmployeeService, private router: Router, private employeeAuthService: EmployeeAuthService, private toastr: ToastrService) { 
     this.getDepartments();
   }
 
@@ -43,11 +44,12 @@ export class DepartmentsComponent implements OnInit {
       this.employeeService.deleteDepartment(id).subscribe(
         response => {
           this.departments = this.departments.filter(department => department.departmentId !== id); 
+          this.toastr.success('Department deleted successfully');
         }
       );
     }
    } else {
-      alert('You do not have permission to delete department');
+      this.toastr.error('You are not authorized to delete a department!');
     }
   }
 

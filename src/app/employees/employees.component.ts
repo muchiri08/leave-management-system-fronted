@@ -6,6 +6,7 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { Employee } from '../_model/employee';
 import { EmployeeAuthService } from '../_services/employee-auth.service';
 import { EmployeeService } from '../_services/employee.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-employees',
@@ -21,7 +22,7 @@ export class EmployeesComponent implements OnInit {
   employees: Array<Employee> = new Array<Employee>();
   id = this.employeeAuthService.getEmployeeId();
 
-  constructor( private employeeService: EmployeeService, private employeeAuthService: EmployeeAuthService, private router: Router) { 
+  constructor( private employeeService: EmployeeService, private employeeAuthService: EmployeeAuthService, private router: Router, private toastr: ToastrService) { 
     this.getEmployees();
    }
 
@@ -54,6 +55,9 @@ export class EmployeesComponent implements OnInit {
       this.employeeService.deleteEmployee(id).subscribe(
         response => {
           this.employees = this.employees.filter(employee => employee.getId() !== id); 
+          this.toastr.success('Employee deleted successfully');
+        }, error => {
+          this.toastr.error('Employee could not be deleted');
         }
       );
     }

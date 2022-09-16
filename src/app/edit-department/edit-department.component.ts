@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../_services/employee.service';
 import { EmployeeAuthService } from '../_services/employee-auth.service'
 import { Department } from '../_model/department';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit-department',
@@ -16,7 +17,7 @@ export class EditDepartmentComponent implements OnInit {
     ''
   );
 
-  constructor(private employeeService: EmployeeService, private employeeAuthService: EmployeeAuthService) {
+  constructor(private employeeService: EmployeeService, private employeeAuthService: EmployeeAuthService, private toastr: ToastrService) { 
     this.getDepartMentById();
    }
 
@@ -35,7 +36,8 @@ export class EditDepartmentComponent implements OnInit {
     if(department.departmentName != ""){
       this.employeeService.updateDepartment(this.id, department).subscribe(
         response => {
-          console.log(response);
+          this.department.departmentName = "";
+          this.toastr.success('Department updated successfully');
         }
       );
     }

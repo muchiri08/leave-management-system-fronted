@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { Holiday } from '../_model/holiday';
 import { EmployeeService } from '../_services/employee.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-holidays',
@@ -14,7 +15,7 @@ export class HolidaysComponent implements OnInit {
   deleteIcon = faTrashCan;
   holidays: Array<Holiday> = new Array<Holiday>();
 
-  constructor(private employeeService: EmployeeService, private router: Router) {
+  constructor(private employeeService: EmployeeService, private router: Router, private toastr: ToastrService) {
     this.getHolidays();
    }
 
@@ -35,11 +36,12 @@ export class HolidaysComponent implements OnInit {
           this.employeeService.deleteHoliday(id).subscribe(
             (response) => {
               this.holidays = this.holidays.filter(holiday => holiday.holidayId !== id);
+              this.toastr.success('Holiday deleted successfully');
             }
           )
         }
       } else {
-        alert('You are not authorized to delete a holiday!');
+        this.toastr.error('You are not authorized to delete a holiday!');
       }
   }
 

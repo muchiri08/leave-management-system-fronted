@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LeaveType } from '../_model/leave-type';
 import { EmployeeService } from '../_services/employee.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-leave-type',
@@ -15,7 +16,7 @@ export class AddLeaveTypeComponent implements OnInit {
     0
   );
 
-  constructor(private employeeService: EmployeeService) { }
+  constructor(private employeeService: EmployeeService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -26,10 +27,11 @@ export class AddLeaveTypeComponent implements OnInit {
         data => {
           this.leaveType.leaveName = '';
           this.leaveType.numOfDays = 0;
+          this.toastr.success('Leave type added successfully');
         }
       );
     } else {
-      alert('Please fill all the fields');
+      this.toastr.error('Please fill all the fields');
     }
   }
 

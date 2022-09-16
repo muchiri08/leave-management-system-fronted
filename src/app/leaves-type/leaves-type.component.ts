@@ -5,6 +5,7 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { LeaveType } from '../_model/leave-type';
 import { EmployeeAuthService } from '../_services/employee-auth.service';
 import { EmployeeService } from '../_services/employee.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-leaves-type',
@@ -18,7 +19,7 @@ export class LeavesTypeComponent implements OnInit {
 
   leavesType: Array<LeaveType> = new Array<LeaveType>();
 
-  constructor(private employeeService: EmployeeService, private router: Router, private employeeAuthService: EmployeeAuthService) { 
+  constructor(private employeeService: EmployeeService, private router: Router, private employeeAuthService: EmployeeAuthService, private toastr: ToastrService){ 
     this.getLeavesType();
   }
 
@@ -38,6 +39,7 @@ export class LeavesTypeComponent implements OnInit {
       this.employeeService.deleteLeaveType(id).subscribe(
         response => {
           this.leavesType = this.leavesType.filter(leaveType => leaveType.leaveId !== id);
+          this.toastr.success('Leave type deleted successfully');
         }
       );
     }

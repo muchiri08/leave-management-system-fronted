@@ -28,7 +28,6 @@ export class ViewEmployeeComponent implements OnInit {
     this.employeeService.getEmployeeById(this.id).subscribe(
       data => {
         this.employee = data;
-        console.log(this.employee);
       }
     );
   }
@@ -37,13 +36,11 @@ export class ViewEmployeeComponent implements OnInit {
     this.employeeService.getLeaveBalance(this.id).subscribe(
       balance => {
         this.employeeLeaveBalance = balance;
-        console.log(this.employeeLeaveBalance);
       }
     );
   }
 
   applyLeaveOnBehalfOfEmployee() {
     this.router.navigate([`/leaves/create-leave-request`]);
-    console.log(this.id);
   }
 }

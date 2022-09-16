@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EmployeeAuthService } from '../_services/employee-auth.service';
 import { EmployeeService } from '../_services/employee.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { EmployeeService } from '../_services/employee.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private employeeService: EmployeeService, private employeeAuthService: EmployeeAuthService, private router: Router) { }
+  constructor(private employeeService: EmployeeService, private employeeAuthService: EmployeeAuthService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -41,13 +42,12 @@ export class LoginComponent implements OnInit {
         (error) => {
           console.log(error);
           if (error.status === 401) {
-            alert('Invalid username or password');
-            console.log(error.message);
+            this.toastr.error('Invalid username or password');
           }
         }
       );
     } else {
-      alert('Please fill in all the fields');
+      this.toastr.error('Please fill all the fields');
     }
   }
 

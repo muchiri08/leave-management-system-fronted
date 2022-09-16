@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LeaveType } from '../_model/leave-type';
 import { EmployeeAuthService } from '../_services/employee-auth.service';
 import { EmployeeService } from '../_services/employee.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit-leave-type',
@@ -17,7 +18,7 @@ export class EditLeaveTypeComponent implements OnInit {
     0
   );
 
-  constructor(private employeeService: EmployeeService, private employeeAuthService: EmployeeAuthService) { 
+  constructor(private employeeService: EmployeeService, private employeeAuthService: EmployeeAuthService, private toastr: ToastrService) { 
     this.getLeaveTypeById();
   }
 
@@ -39,11 +40,11 @@ export class EditLeaveTypeComponent implements OnInit {
         response => {
           this.leaveType.leaveName = '';
           this.leaveType.numOfDays = 0;
-          console.log(response);
+          this.toastr.success('Leave type updated successfully');
         }
       );
     } else {
-      alert('Please fill all the fields');
+      this.toastr.error('Please fill all the fields');
     }
   }
 

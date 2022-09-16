@@ -72,11 +72,11 @@ import { ViewEmployeeComponent } from './view-employee/view-employee.component';
     FormsModule,
     HttpClientModule,
     RouterModule,
+    BrowserAnimationsModule,
     ToastrModule.forRoot({
-      positionClass: 'toast-top-center',
+      timeOut: 1500,
       preventDuplicates: true
-    }),
-    BrowserAnimationsModule
+    })
   ],
   providers: [
     AuthGuard, 

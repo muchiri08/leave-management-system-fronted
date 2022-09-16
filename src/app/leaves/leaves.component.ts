@@ -4,6 +4,7 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { Leave } from '../_model/leave';
 import { EmployeeAuthService } from '../_services/employee-auth.service';
 import { EmployeeService } from '../_services/employee.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-leaves',
@@ -24,7 +25,7 @@ export class LeavesComponent implements OnInit {
     endDate: ''
   }
 
-  constructor(private employeeService: EmployeeService, private employeeAuthService: EmployeeAuthService) {
+  constructor(private employeeService: EmployeeService, private employeeAuthService: EmployeeAuthService, private toastr: ToastrService) {
     this.getLeaves();
   }
 
@@ -55,6 +56,7 @@ export class LeavesComponent implements OnInit {
       this.employeeService.deleteLeaveRequest(id).subscribe(
         response => {
           this.leaves = this.leaves.filter(leave => leave.leaveId != id);
+          this.toastr.success("Leave request deleted successfully");
         }
       );
     }
@@ -85,7 +87,7 @@ export class LeavesComponent implements OnInit {
         }
       );
     } else {
-      alert("Please select start and end dates");
+      this.toastr.error("Please select start and end dates");
     }
   }
 

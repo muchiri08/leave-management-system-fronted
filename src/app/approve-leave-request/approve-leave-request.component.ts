@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Leave } from '../_model/leave';
 import { EmployeeAuthService } from '../_services/employee-auth.service';
 import { EmployeeService } from '../_services/employee.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-approve-leave-request',
@@ -28,7 +29,7 @@ export class ApproveLeaveRequestComponent implements OnInit {
   leaveId: number = this.employeeAuthService.getIdToUpdate();
   approverId: number = this.employeeAuthService.getEmployeeId();
 
-  constructor(private employeeService: EmployeeService, private employeeAuthService: EmployeeAuthService, private router: Router) { }
+  constructor(private employeeService: EmployeeService, private employeeAuthService: EmployeeAuthService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -46,14 +47,14 @@ export class ApproveLeaveRequestComponent implements OnInit {
     if (this.leaveRequest.status != "") {
       this.employeeService.updateLeaveRequest(this.leaveId, this.leaveRequest, this.approverId).subscribe(
         response => {
-          console.log(response);  
-          // this.router.navigate(['/leaves']);
+          console.log(response);
           this.leaveRequest.status = "";
+          this.toastr.success('Leave request approved successfully');
 
         }
       );
     } else {
-      alert("Please select a status");
+      this.toastr.error('Please select a status');
     }
   }
 

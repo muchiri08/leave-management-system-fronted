@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { EmployeeService } from '../_services/employee.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-employee',
@@ -12,7 +13,7 @@ export class AddEmployeeComponent implements OnInit {
   departments: Array<Department> = new Array<Department>();
 
 
-  constructor(private employeeService: EmployeeService) {
+  constructor(private employeeService: EmployeeService, private toastr: ToastrService) { 
     this.getDepartments();
   }
 
@@ -21,7 +22,6 @@ export class AddEmployeeComponent implements OnInit {
 
 getDepartments() {
   this.employeeService.getDepartments().subscribe(data => {
-    //to filter out the Admin department from the list of departments if the user is not an admin
       this.departments = data;
     }
   );
@@ -35,13 +35,14 @@ createNewEmployee(employee: NgForm) {
   if(employee.valid) {
     this.employeeService.createNewEmployee(employee.value).subscribe((response) => {
       employee.resetForm();
+      this.toastr.success('Employee added successfully');
     
     }, (error) => {
-      console.log(error);
+      this.toastr.error('Error adding employee');
     }
     );
   } else {
-    alert('Please fill in all the fields');
+    this.toastr.error('Please fill all the fields');
   }
 }
 

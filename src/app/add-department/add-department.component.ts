@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Department } from '../_model/department';
 import { EmployeeService } from '../_services/employee.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-department',
@@ -14,7 +15,7 @@ export class AddDepartmentComponent implements OnInit {
     ''
   );
 
-  constructor(private employeeService: EmployeeService) { }
+  constructor(private employeeService: EmployeeService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -24,10 +25,11 @@ export class AddDepartmentComponent implements OnInit {
       this.employeeService.createNewDepartment(this.department).subscribe(data => {
         console.log(data);
         this.department.departmentName = "";
+        this.toastr.success('Department added successfully');
       }
       );
     } else {
-      alert('Please fill all the fields');
+      this.toastr.error('Please fill all the fields');
     }
   }
 
